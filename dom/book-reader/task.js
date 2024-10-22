@@ -1,4 +1,4 @@
-const buttons = Array.from(document.getElementsByClassName("font-size"));
+const buttons = Array.from(document.querySelectorAll(".font-size"));
 
 function changeFontSize(event) {
   event.preventDefault();
@@ -19,3 +19,5 @@ function changeFontSize(event) {
 for (let i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener("click", changeFontSize);
 }
+
+
