@@ -1,23 +1,20 @@
 const buttons = Array.from(document.querySelectorAll(".font-size"));
+let activeButton = document.querySelector(".font-size_active");
+let book = document.querySelector(".book");
 
-function changeFontSize(event) {
-  event.preventDefault();
-  let activeElement =
-    this.closest("div.book__control").querySelector("a.font-size_active");
-  activeElement.classList.remove("font-size_active");
-  this.classList.add("font-size_active");
-  let dataAttr = this.getAttribute("data-size");
-  if (dataAttr === "small") {
-    this.closest("div.book").className = "book book_fs-small";
-  } else if (dataAttr === "big") {
-    this.closest("div.book").className = "book book_fs-big";
-  } else {
-    this.closest("div.book").className = "book";
-  }
-}
-
-for (let i = 0; i < buttons.length; i++) {
-  buttons[i].addEventListener("click", changeFontSize);
-}
-
-
+buttons.forEach((e) => {
+  e.addEventListener("click", (el) => {
+    el.preventDefault();
+    activeButton.classList.remove("font-size_active");
+    e.classList.add("font-size_active");
+    activeButton = e;
+    let dataAttr = e.getAttribute("data-size");
+    if (dataAttr === "small") {
+      book.className = "book book_fs-small";
+    } else if (dataAttr === "big") {
+      book.className = "book book_fs-big";
+    } else {
+      book.className = "book";
+    }
+  });
+});
