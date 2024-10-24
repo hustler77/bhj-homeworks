@@ -1,27 +1,14 @@
-const text = Array.from(document.querySelectorAll(".rotator__case"));
+const rotator = Array.from(document.querySelectorAll(".rotator__case"));
 
-let number = 0;
+setInterval(() => {
+  let index = rotator.findIndex((item) =>
+    item.className.includes("rotator__case_active")
+  );
+  rotator[index].classList.remove("rotator__case_active");
+  index++;
 
-function showText() {
-  text[number].classList.add("rotator__case_active");
-}
-
-function hiddenText() {
-  text[number].classList.remove("rotator__case_active");
-}
-
-function countText() {
-  if (number >= text.length - 1) {
-    number = 0;
-  } else {
-    number++;
+  if (index === rotator.length) {
+    index = 0;
   }
-}
-
-function activeRotator() {
-  hiddenText();
-  countText();
-  showText();
-}
-
-setInterval(activeRotator, 1000);
+  rotator[index].classList.add("rotator__case_active");
+}, 1000);
